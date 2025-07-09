@@ -11,11 +11,11 @@
 
 | Name                | GitHub                 | Affiliation |
 | ------------------- | ---------------------- | ----------- |
-| Uzair Shaikh        | MUzairS15              | Layer5      |
+| Uzair Shaikh        | MUzairS15              | Meshery     |
 | Nikhil Ladha        | Nikhil-Ladha           | Red Hat     |
 | Antonette Caldwell  | acald-creator          | Acquia      |
-| Aabid Sofi          | aabidsofi19            | Layer5      |
-| Yash Sharma         | Yashsharma1911         | Layer5      |
+| Aabid Sofi          | aabidsofi19            | Meshery     |
+| Yash Sharma         | Yashsharma1911         | Meshery     |
 
 ### Adapter Maintainers
 
@@ -42,8 +42,8 @@
 | Name              | GitHub          | Affiliation |
 | ----------------- | --------------- | ----------- |
 | Adithya Krishna   | adithyaakrishna | Red Hat     |
-| Lee Calcote       | leecalcote      | Layer5      |
-| Vishal Vivek      | vishalvivekm    | Layer5      |
+| Lee Calcote       | leecalcote      | Meshery     |
+| Vishal Vivek      | vishalvivekm    | Meshery     |
 
 ### Site Maintainers
 

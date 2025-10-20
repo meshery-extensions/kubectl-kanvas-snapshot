@@ -1,0 +1,69 @@
+apiVersion: krew.cncf.io/v1alpha2
+kind: Plugin
+metadata:
+  name: plugin-name
+spec:
+  version: {{ .TagName }}
+  shortDescription: "Brief description of your plugin"
+  description: |
+    Longer description of your plugin functionality.
+    Can span multiple lines explaining what it does.
+  caveats: |
+    USAGE:
+      kubectl plugin-name [command] [flags]
+    
+    EXAMPLES:
+      kubectl plugin-name status
+      kubectl plugin-name deploy
+  platforms:
+  - selector:
+      os: darwin
+      arch: amd64
+    uri: https://github.com/your-org/plugin-name/releases/download/{{ .TagName }}/plugin-name-darwin-amd64.tar.gz
+    sha256: {{ .SHA256 }}
+    bin: plugin-name
+    files:
+    - from: "**/plugin-name"
+      to: "."
+    - from: "LICENSE"
+      to: "."
+
+  - selector:
+      os: darwin
+      arch: arm64
+    uri: https://github.com/your-org/plugin-name/releases/download/{{ .TagName }}/plugin-name-darwin-arm64.tar.gz
+    sha256: {{ .SHA256 }}
+    bin: plugin-name
+    files:
+    - from: "**/plugin-name"
+      to: "."
+
+  - selector:
+      os: linux
+      arch: amd64
+    uri: https://github.com/your-org/plugin-name/releases/download/{{ .TagName }}/plugin-name-linux-amd64.tar.gz
+    sha256: {{ .SHA256 }}
+    bin: plugin-name
+    files:
+    - from: "**/plugin-name"
+      to: "."
+
+  - selector:
+      os: linux
+      arch: arm64
+    uri: https://github.com/your-org/plugin-name/releases/download/{{ .TagName }}/plugin-name-linux-arm64.tar.gz
+    sha256: {{ .SHA256 }}
+    bin: plugin-name
+    files:
+    - from: "**/plugin-name"
+      to: "."
+
+  - selector:
+      os: windows
+      arch: amd64
+    uri: https://github.com/your-org/plugin-name/releases/download/{{ .TagName }}/plugin-name-windows-amd64.zip
+    sha256: {{ .SHA256 }}
+    bin: plugin-name.exe
+    files:
+    - from: "**/plugin-name.exe"
+      to: "."

@@ -5,6 +5,11 @@ on:
         tags:
             - "v*"
 
+permissions:
+    contents: write
+    pull-requests: write
+    actions: read
+
 jobs:
     build_krew_plugin:
         runs-on: ubuntu-latest
@@ -62,3 +67,18 @@ jobs:
                   files: dist/*
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Get branch name
+              id: get_branch
+              run: |
+                  BRANCH_NAME=$(git branch -r --contains $GITHUB_SHA | grep origin | head -n 1 | sed 's/origin\///')
+                  echo "branch=${BRANCH_NAME}" >> $GITHUB_OUTPUT
+
+            - name: Commit Krew manifest
+              uses: stefanzweifel/git-auto-commit-action@v5
+              with:
+                  commit_message: "chore: update Krew plugin manifest for ${{ github.ref_name }}"
+                  file_pattern: krew/plugin.yaml
+                  commit_user_name: "preciousdipe"
+                  commit_user_email: "preciousdipe@gmail.com"
+                  branch: ${{ steps.get_branch.outputs.branch }}

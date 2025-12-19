@@ -31,7 +31,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@master
         with:
-          go-version: "1.21"
+          go-version: "1.25"
       - name: Build Meshery Server
         env:
           PROVIDER_BASE_URLS: http://localhost:9876
@@ -45,15 +45,15 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 1
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '20.x'
       - name: Cache node modules
         id: node-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/cache
@@ -89,13 +89,13 @@ jobs:
         run: |
           make ui-provider-build
       - name: Upload meshery-ui artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: meshery-ui
           retention-days: 30
           path: /home/runner/work/meshery/meshery/ui/out
       - name: Upload provider-ui artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: provider-ui
           retention-days: 30
@@ -109,11 +109,11 @@ jobs:
     timeout-minutes: 45
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6                                                          
         with:
           fetch-depth: 0
       - name: Check out meshery-istio code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: layer5io/meshery-istio
           path: ./meshery-istio
@@ -123,13 +123,13 @@ jobs:
       #     repository: layer5io/meshery-consul
       #     path: ./meshery-consul
       - name: Create k8s Kind Cluster
-        uses: helm/kind-action@v1.8.0
+        uses: helm/kind-action@v1
         with:
           cluster_name: "kind-cluster"
       - name: Setup Go
         uses: actions/setup-go@master
         with:
-          go-version: "1.21"
+          go-version: "1.25"
       - name: Run meshery-istio
         run: |
           mkdir -p /home/runner/.meshery/bin
@@ -143,12 +143,12 @@ jobs:
       #     go run main.go &
       #     sleep 60
       - name: Setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '20.x'
       - name: Restore node modules cache
         id: node-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/cache
@@ -162,12 +162,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Download meshery-ui artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: meshery-ui
           path: /home/runner/work/meshery/meshery/ui/out
       - name: Download provider-ui artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: provider-ui
           path: /home/runner/work/meshery/meshery/provider-ui/out
@@ -212,7 +212,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 1
       - name: Docker edge build & tag
@@ -230,7 +230,7 @@ jobs:
           docker push ${{ secrets.IMAGE_NAME }}:edge-${GITHUB_SHA::8}
       - name: Docker Hub Description
         if: github.event_name != 'pull_request' && startsWith(github.ref, 'refs/tags/') && success()
-        uses: peter-evans/dockerhub-description@v4
+        uses: peter-evans/dockerhub-description@v5
         with:
             username: ${{ secrets.DOCKERHUB_USERNAME }}
             password: ${{ secrets.DOCKERHUB_PASSWORD }}
@@ -241,7 +241,7 @@ jobs:
     name: swagger-docs
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Check if handlers were modified
         uses: dorny/paths-filter@v3
         id: changes
@@ -268,7 +268,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 1
       - name: Check if schema was modified

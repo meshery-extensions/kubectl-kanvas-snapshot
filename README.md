@@ -1,13 +1,41 @@
+<div>
+    <!-- Top section -->
+    <div>
+        <img src="https://raw.githubusercontent.com/meshery-extensions/.github/master/profile/assets/img/meshery-extensions-github.png" usemap="#workmap"  />
+    </div>
+    <!-- Overview section -->
+    <div align="center">
+        <h3>Meshery is an extensible, self-service engineering plaform for the collaborative management of cloud and cloud native infrastructure.</h3>
+        <h3 align="center"><a href="https://meshery.io/extensions">Browse all extensions</a></h3>
+        <h5 align="center">
+            <a href="https://meshery.io#getting-started">Installation</a> |
+            <a href="https://docs.meshery.io">Documentation</a> |
+            <a href="https://discuss.meshery.io">Forum</a> |
+            <a href="https://play.meshery.io">Playground</a> |
+            <a href="https://meshery.io/catalog">Catalog</a>
+        </h5>
+        <br />
+    </div>
+    
+[Meshery Extensions](https://meshery.io/extension) are plugins or add-ons that enhance the functionality of the Meshery platform beyond its core capabilities. Meshery supports different types of extensions ([docs](https://docs.meshery.io/extensions/)):
 
-<p style="text-align:center;" align="center"><a href="https://meshery.io"><picture>
- <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/meshery/meshery/master/.github/assets/images/readme/meshery-logo-light-text-side.svg">
- <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/meshery/meshery/master/.github/assets/images/readme/meshery-logo-dark-text-side.svg">
-<img src="https://raw.githubusercontent.com/meshery/meshery/master/.github/assets/images/readme/meshery-logo-dark-text-side.svg"
-alt="Meshery Logo" width="70%" /></picture></a><br /><br /></p>
+- [Adapters](https://docs.meshery.io/concepts/architecture/adapters): Adapters allow Meshery to interface with the different cloud native infrastructure.
+- [Load Generators](https://docs.meshery.io/extensibility/load-generators): for performance characterization and benchmarking
+- [Integrations](https://docs.meshery.io/extensibility/integrations): model-based support for a broad variety of design and orchestration of cloud and cloud native platforms, tools, and technologies.
+- [Providers](https://docs.meshery.io/extensibility/providers): for connecting to different cloud providers and infrastructure platforms
+- [UI Plugins](https://docs.meshery.io/extensibility/ui): Meshery UI has a number of extension points that allow users to customize their experience with third-party plugins.
+- [CLI Plugins](https://docs.meshery.io/extensibility/cli-plugins): Helm and kubectl plugins that let you create Kanvas snapshots from Helm charts, Kubernetes manifests, and the current state of your Kubernetes cluster, then upload them to Meshery.
+<!-- Blog Post and Explanation section -->
+<!-- Video Section -->
+<h3 align="center">See Meshery and it's plugins in-action</h3>
+    <img src="https://raw.githubusercontent.com/meshery/.github/master/profile/assets/img/meshery-dashboard-hero-image.png"  />
+    
+# kubectl kanvas snapshot
+
 <p align="center">
 <a href="https://hub.docker.com/r/meshery/meshery" alt="Docker pulls">
   <img src="https://img.shields.io/docker/pulls/meshery/meshery.svg" /></a>
-<a href="https://github.com/issues?q=is%3Aopen+is%3Aissue+archived%3Afalse+org%meshery+org%3Ameshery+org%3Aservice-mesh-performance+org%3Aservice-mesh-patterns+org%3A+label%3A%22help+wanted%22+" alt="GitHub issues by-label">
+<a href="https://github.com/issues?q=is%3Aopen%20is%3Aissue%20archived%3Afalse%20(repo%3Ameshery%2Fmeshery%20OR%20repo%3Aservice-mesh-performance%2Fservice-mesh-performance%20OR%20repo%3Aservice-mesh-patterns%2Fservice-mesh-patterns)%20label%3A%22help%20wanted%22" alt="GitHub issues by-label">
   <img src="https://img.shields.io/github/issues/meshery/meshery/help%20wanted.svg?color=informational" /></a>
 <a href="https://github.com/meshery/meshery/blob/master/LICENSE" alt="LICENSE">
   <img src="https://img.shields.io/github/license/meshery/meshery?color=brightgreen" /></a>
@@ -19,8 +47,8 @@ alt="Meshery Logo" width="70%" /></picture></a><br /><br /></p>
   <img src="https://img.shields.io/github/actions/workflow/status/meshery/meshery/release-drafter.yml" /></a>
 <a href="https://bestpractices.coreinfrastructure.org/projects/3564" alt="CLI Best Practices">
   <img src="https://bestpractices.coreinfrastructure.org/projects/3564/badge" /></a>
-<a href="http://discuss.meshery.io" alt="Discuss Users">
-  <img src="https://img.shields.io/discourse/users?label=discuss&logo=discourse&server=https%3A%2F%2Fdiscuss.meshery.io" /></a>
+<a href="https://discuss.meshery.io" alt="Discuss Users">
+  <img src="https://img.shields.io/discourse/users?label=discuss&logo=discourse&server=http%3A%2F%2Fdiscuss.meshery.io" /></a>
 <a href="https://slack.meshery.io" alt="Join Slack">
   <img src="https://img.shields.io/badge/Slack-@meshery.svg?logo=slack" /></a>
 <a href="https://twitter.com/intent/follow?screen_name=mesheryio" alt="Twitter Follow">
@@ -31,18 +59,6 @@ alt="Meshery Logo" width="70%" /></picture></a><br /><br /></p>
   <img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmeshery%2Fmeshery.svg?type=shield"/></a>  
   -->
 </p>
-
-<h5><p align="center"><i>If you like Meshery, please <a href="https://github.com/meshery/meshery/stargazers">★</a> this repository to show your support! 🤩</i></p></h5>
-
-
-<div align="center" width="100%">
-<img src=".github/assets/images/readme/cncf-white.svg#gh-dark-mode-only" width="30%" align="center" />
-<img src=".github/assets/images/readme/cncf-black.svg#gh-light-mode-only" width="30%" align="center" />
-<p align="center"><sup>MESHERY IS A CLOUD NATIVE COMPUTING FOUNDATION PROJECT</sup></p>
-</div>
-
-
-# kubectl kanvas snapshot
 
 A `kubectl` plugin for rendering Kanvas Snapshots. `kanvas snapshot` is a native kubectl plugin for conveniently creating a visual snapshot of the combination of multiple Kubernetes manifest files, each containing one or more Kubernetes resources. A native kubetcl CLI plugin for conveniently creating a visual snapshot of a collection of Kubernetes manifests.
 </p>

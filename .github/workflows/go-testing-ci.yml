@@ -52,12 +52,7 @@ jobs:
           go-version: "1.21"
       - name: Run coverage
         run: go test --short ./... -race -coverprofile=coverage.txt -covermode=atomic
-      - name: Upload coverage to Codecov
-        if: github.repository == 'meshery/meshery'
-        uses: codecov/codecov-action@v4.3.0
-        with:
-          files: ./coverage.txt
-          flags: unittests
+     
   integration-tests:
     name: Integration tests
     runs-on: ubuntu-22.04
@@ -101,10 +96,4 @@ jobs:
           ./mesheryctl system check --preflight;
           ./mesheryctl system stop -y;
           echo "Running Mesheryctl with Kubernetes completed."
-          
-      - name: Upload coverage to Codecov
-        if: github.repository == 'meshery/meshery'
-        uses: codecov/codecov-action@v4
-        with:
-          files: ./coverage.txt
-          flags: gointegrationtests     
+              

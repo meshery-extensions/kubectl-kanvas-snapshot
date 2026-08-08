@@ -11,7 +11,7 @@ jobs:
     if: github.repository == 'meshery/meshery'
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Check if handlers were modified
         uses: dorny/paths-filter@v3
         id: changes
@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 1
       - name: Check if schema was modified
@@ -64,7 +64,7 @@ jobs:
               - added|modified: 'server/internal/graphql/schema/schema.graphql'
       - name: Set up Ruby
         if: steps.filter.outputs.modified == 'true'
-        uses: ruby/setup-ruby@v1.162.0
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2.2
           bundler-cache: true
@@ -78,7 +78,7 @@ jobs:
         run: git pull origin master
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           file_pattern: docs
           commit_user_name: l5io
@@ -95,7 +95,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 1
       - name: Login to DockerHub
@@ -132,7 +132,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Set up Go
@@ -212,7 +212,7 @@ jobs:
           echo "${{ env.EMAIL_BODY }}"
       - name: Send Email Notification
         if: env.EMAIL_BODY != ''
-        uses: dawidd6/action-send-mail@v3
+        uses: dawidd6/action-send-mail@v6
         with:
           server_address: smtp.gmail.com
           server_port: 465

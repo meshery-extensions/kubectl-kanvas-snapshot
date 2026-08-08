@@ -9,7 +9,7 @@ jobs:
         runs-on: ubuntu-latest 
         steps:
         - name: Upgrade Meshery Helm Release
-          uses: appleboy/ssh-action@v1.0.3
+          uses: appleboy/ssh-action@v1
           with:
               host: ${{ secrets.METAL_SERVER3 }}
               username: root

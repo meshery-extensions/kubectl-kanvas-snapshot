@@ -20,9 +20,9 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@master
         with:
-          go-version: "1.21"
+          go-version: "1.25"
       - name: Setup Cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/go/pkg/mod
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
@@ -31,7 +31,7 @@ jobs:
       - run: |
           GOPROXY=https://proxy.golang.org,direct GOSUMDB=off GO111MODULE=on go build -tags draft ./server/cmd/main.go ./server/cmd/error.go
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: meshery
           path: ./main
@@ -44,12 +44,12 @@ jobs:
         with:
           repository: meshery/meshery
           fetch-depth: 1
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '20.x'
       - name: Cache node modules
         id: node-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/cache
@@ -74,12 +74,12 @@ jobs:
         run: |
           make ui-provider-build
       - name: upload meshery-ui artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: meshery-ui-build
           path: ui/out/
       - name: upload Meshery-provider-ui artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: meshery-provider-ui build
           path: provider-ui/out/

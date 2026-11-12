@@ -60,7 +60,69 @@
   -->
 </p>
 
-A `kubectl` plugin for rendering Kanvas Snapshots. `kanvas snapshot` is a native kubectl plugin for conveniently creating a visual snapshot of the combination of multiple Kubernetes manifest files, each containing one or more Kubernetes resources. A native kubetcl CLI plugin for conveniently creating a visual snapshot of a collection of Kubernetes manifests.
+A `kubectl` plugin for rendering Kanvas Snapshots. `kanvas snapshot` is a native kubectl plugin for conveniently creating a visual snapshot of the combination of multiple Kubernetes manifest files, each containing one or more Kubernetes resources.
+
+## Features
+
+- **Single & Multi-Manifest Support**: Snapshot individual manifests or combine multiple Kubernetes manifests into a single visual design.
+- **Directory Scanning**: Recursively discover and combine all `.yaml`, `.yml`, and `.json` manifests in a directory.
+- **Remote URI Import**: Directly render Kubernetes manifests hosted on GitHub or remote URLs.
+- **Standard Input (`stdin`) Support**: Pipe manifests directly into `kubectl kanvas-snapshot -f -`.
+- **Email Notifications**: Optionally receive an email notification when your Kanvas snapshot is rendered.
+- **Local Download**: Save the generated snapshot image directly to disk with `-o, --output`.
+
+## Installation
+
+### Using Krew
+
+```bash
+kubectl krew install kanvas-snapshot
+```
+
+### Manual Installation
+
+1. Download the release binary for your platform from [Releases](https://github.com/meshery-extensions/kubectl-kanvas-snapshot/releases).
+2. Extract the archive and ensure `kubectl-kanvas-snapshot` is on your `$PATH`:
+   ```bash
+   tar -xzf kubectl-kanvas-snapshot_*.tar.gz
+   chmod +x kubectl-kanvas-snapshot
+   sudo mv kubectl-kanvas-snapshot /usr/local/bin/
+   ```
+
+## Usage
+
+```bash
+# Generate snapshot from a single manifest
+kubectl kanvas-snapshot -f ./deployment.yaml
+
+# Generate snapshot from multiple manifests
+kubectl kanvas-snapshot -f ./deployment.yaml -f ./service.yaml
+
+# Generate snapshot from a directory
+kubectl kanvas-snapshot -f ./manifests/
+
+# Generate snapshot from a remote URL with email notification
+kubectl kanvas-snapshot -f https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/application/deployment.yaml -e user@example.com --name my-app
+
+# Generate snapshot from standard input
+cat deployment.yaml | kubectl kanvas-snapshot -f -
+
+# Download snapshot image directly
+kubectl kanvas-snapshot -f ./deployment.yaml -o ./snapshot.png
+```
+
+### Available Flags
+
+| Flag | Shorthand | Description | Default |
+| --- | --- | --- | --- |
+| `--file` | `-f` | Path(s) or URI(s) to Kubernetes manifest(s), directory, or `-` for stdin (**required**) | |
+| `--email` | `-e` | Email address to notify when snapshot is ready | `""` |
+| `--name` | | Custom name for the Meshery design | derived from file/URL |
+| `--output` | `-o` | Local path to save the snapshot image | `""` |
+| `--meshery-url` | | Override Meshery API endpoint | `https://playground.meshery.io` |
+| `--token` | | Override Meshery authentication token | `""` |
+| `--help` | `-h` | Help for kanvas-snapshot | |
+
 </p>
 
 ## About Meshery Extensions

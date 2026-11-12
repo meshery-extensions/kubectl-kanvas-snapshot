@@ -1,0 +1,42 @@
+package log
+
+import (
+	"io"
+	"os"
+
+	"github.com/layer5io/meshkit/logger"
+	log "github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
+)
+
+// TerminalFormatter is exported
+type TerminalFormatter struct{}
+
+// Format defines the format of output for Logrus logs
+func (f *TerminalFormatter) Format(entry *log.Entry) ([]byte, error) {
+	return append([]byte(entry.Message), '\n'), nil
+}
+
+// SetupLogrusFormatter configures logrus formatter
+func SetupLogrusFormatter() {
+	log.SetFormatter(new(TerminalFormatter))
+}
+
+// SetupMeshkitLogger initializes a MeshKit Logger instance
+func SetupMeshkitLogger(name string, debugLevel bool, output io.Writer) logger.Handler {
+	logLevel := viper.GetInt("LOG_LEVEL")
+	if !debugLevel {
+		logLevel = int(log.DebugLevel)
+	}
+
+	l, err := logger.New(name, logger.Options{
+		Format:   logger.TerminalLogFormat,
+		LogLevel: logLevel,
+		Output:   output,
+	})
+	if err != nil {
+		log.Error(err)
+		os.Exit(1)
+	}
+	return l
+}

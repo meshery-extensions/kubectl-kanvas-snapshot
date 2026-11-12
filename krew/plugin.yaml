@@ -1,0 +1,88 @@
+apiVersion: krew.cncf.io/v1alpha2
+kind: Plugin
+metadata:
+  name: kanvas-snapshot
+spec:
+  version: {{ .TagName }}
+  homepage: https://meshery.io
+  shortDescription: Visual snapshot of Kubernetes manifests as Meshery designs
+  description: |
+    A native kubectl plugin to generate visual snapshots of Kubernetes manifests,
+    collections of manifests, or manifests fetched from remote URLs using
+    Meshery's snapshot service and Kanvas.
+  caveats: |
+    USAGE:
+      kubectl kanvas-snapshot -f <manifest.yaml> [flags]
+
+    EXAMPLES:
+      # Generate snapshot from a local manifest file
+      kubectl kanvas-snapshot -f ./deployment.yaml
+
+      # Generate snapshot from multiple manifests
+      kubectl kanvas-snapshot -f ./deployment.yaml -f ./service.yaml
+
+      # Generate snapshot from a directory of manifests
+      kubectl kanvas-snapshot -f ./manifests/
+
+      # Generate snapshot and receive notification by email
+      kubectl kanvas-snapshot -f ./manifest.yaml -e user@example.com --name my-app
+  platforms:
+  - selector:
+      os: darwin
+      arch: amd64
+    uri: https://github.com/meshery-extensions/kubectl-kanvas-snapshot/releases/download/{{ .TagName }}/kubectl-kanvas-snapshot_{{ .TagName }}_Darwin_x86_64.tar.gz
+    sha256: {{ .SHA256 }}
+    bin: kubectl-kanvas-snapshot
+    files:
+    - from: "**/kubectl-kanvas-snapshot"
+      to: "."
+    - from: "LICENSE"
+      to: "."
+
+  - selector:
+      os: darwin
+      arch: arm64
+    uri: https://github.com/meshery-extensions/kubectl-kanvas-snapshot/releases/download/{{ .TagName }}/kubectl-kanvas-snapshot_{{ .TagName }}_Darwin_arm64.tar.gz
+    sha256: {{ .SHA256 }}
+    bin: kubectl-kanvas-snapshot
+    files:
+    - from: "**/kubectl-kanvas-snapshot"
+      to: "."
+    - from: "LICENSE"
+      to: "."
+
+  - selector:
+      os: linux
+      arch: amd64
+    uri: https://github.com/meshery-extensions/kubectl-kanvas-snapshot/releases/download/{{ .TagName }}/kubectl-kanvas-snapshot_{{ .TagName }}_Linux_x86_64.tar.gz
+    sha256: {{ .SHA256 }}
+    bin: kubectl-kanvas-snapshot
+    files:
+    - from: "**/kubectl-kanvas-snapshot"
+      to: "."
+    - from: "LICENSE"
+      to: "."
+
+  - selector:
+      os: linux
+      arch: arm64
+    uri: https://github.com/meshery-extensions/kubectl-kanvas-snapshot/releases/download/{{ .TagName }}/kubectl-kanvas-snapshot_{{ .TagName }}_Linux_arm64.tar.gz
+    sha256: {{ .SHA256 }}
+    bin: kubectl-kanvas-snapshot
+    files:
+    - from: "**/kubectl-kanvas-snapshot"
+      to: "."
+    - from: "LICENSE"
+      to: "."
+
+  - selector:
+      os: windows
+      arch: amd64
+    uri: https://github.com/meshery-extensions/kubectl-kanvas-snapshot/releases/download/{{ .TagName }}/kubectl-kanvas-snapshot_{{ .TagName }}_Windows_x86_64.zip
+    sha256: {{ .SHA256 }}
+    bin: kubectl-kanvas-snapshot.exe
+    files:
+    - from: "**/kubectl-kanvas-snapshot.exe"
+      to: "."
+    - from: "LICENSE"
+      to: "."
